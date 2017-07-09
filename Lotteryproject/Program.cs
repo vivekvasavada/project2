@@ -10,16 +10,144 @@ namespace Lotteryproject
     {
         static void Main(string[] args)
         {
-            //ask the user for lowest number in the range
-            //""for highest number in the range
-            //user sets the range 
-            //start with blank array
-            //generate numbers using loop
 
-            Console.WriteLine("Let's plays the lottery");
+
+
+            {
+
+
+                Console.WriteLine("Let's plays the lottery");
+                //user sets the range, check to make sure user picks a number greater than 0 and within the range
+                Console.WriteLine("Please enter the lowest number in a range of positive numbers,");
+                int userLowNumber = int.Parse(Console.ReadLine());
+                while (userLowNumber < 0)
+                {
+                    Console.WriteLine("Please enter a positive number ");
+                    userLowNumber = int.Parse(Console.ReadLine());
+                }
+                {
+                    Console.WriteLine("Please enter the highest number in a range of positive numbers");
+                    int userHigherNumber = int.Parse(Console.ReadLine());
+                    while (userHigherNumber < userLowNumber)
+                    {
+
+                        Console.WriteLine("Please enter a number a higher number");
+                        userHigherNumber = int.Parse(Console.ReadLine());
+                        break;
+                    }
+                    //Ask user to guess 6 numbers
+                    int numberofGuessess = 6;
+                    int[] userNumbers = new int[numberofGuessess];
+
+
+
+                    for (int i = 0; i < userNumbers.Length; i++)
+                    {
+                        Console.WriteLine("Enter your  number");
+                        int numberEntered = int.Parse(Console.ReadLine());
+
+                        while (numberEntered < userLowNumber || numberEntered > userHigherNumber)
+                        {
+                            Console.WriteLine("Please enter a number with in range");
+                            break;
+                        }
+                        userNumbers[i] = numberEntered;
+                    }
+                    
+                }
+            }
+            //computer generates random numbers
+            {//declare variables should ave done it in the beginning
+                int lowernumber = 12;
+                int uppernumber = 52;
+                int[] lottoNumbers = new int[6];
+                Random rand = new Random();
+                int temp = 0;
+                int count = 0;
+
+                //fill array with lottery numbers
+                for (int i = 0; i < lottoNumbers.Length; i++)
+                {
+                    temp = rand.Next(lowernumber, uppernumber);//generate random number
+
+
+                    // check to for duplicate
+                    while (lottoNumbers.Contains(temp) == true)
+                        temp = rand.Next(lowernumber, uppernumber); // duplicate, try again
+
+                    //add new number
+                    lottoNumbers[i] = temp;
+                    count++;
+                }
+                // display the numbers
+                foreach (int i in lottoNumbers)
+                {
+                    Console.WriteLine("Lucky Number: " + (i));
+                }
+                // Compare user and computer for matches, for example loop
+                int numberofGuessess = 6;
+                int[] userNumbers = new int[numberofGuessess];
+                int numbersCorrect = 0;
+
+                for (int i = 0; i < userNumbers.Length; i++)
+                {
+                    foreach (int number in lottoNumbers)
+                        if (number == userNumbers[i])
+                        {
+                            numbersCorrect += 1;
+
+                        }
+                }
+                //informs user of numbers matched
+                Console.WriteLine("You have guessed {0}, numbers correctly, numbersCorrect");
+
+
+                if (numbersCorrect == 6)
+                {
+                    Console.WriteLine("You have won $1,000,000");
+                }
+                else if (numbersCorrect >= 3)
+                {
+                    Console.WriteLine("You have won $250,000");
+                }
+
+                else if (numbersCorrect >= 1)
+                {
+                    Console.WriteLine("You have won $100");
+                }
+                else
+                {
+                    Console.WriteLine("Thanks for playing");
+                }
+
+
+
+
+                        
+            }
+
+             
+
+           
+
+
 
 
 
         }
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
