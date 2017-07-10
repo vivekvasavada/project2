@@ -10,11 +10,9 @@ namespace Lotteryproject
     {
         static void Main(string[] args)
         {
-
-
-
+            //string plaAgain = "";
+            //do
             {
-
 
                 Console.WriteLine("Let's plays the lottery");
                 //user sets the range, check to make sure user picks a number greater than 0 and within the range
@@ -25,41 +23,40 @@ namespace Lotteryproject
                     Console.WriteLine("Please enter a positive number ");
                     userLowNumber = int.Parse(Console.ReadLine());
                 }
-                {
-                    Console.WriteLine("Please enter the highest number in a range of positive numbers");
-                    int userHigherNumber = int.Parse(Console.ReadLine());
-                    while (userHigherNumber < userLowNumber)
-                    {
 
-                        Console.WriteLine("Please enter a number a higher number");
-                        userHigherNumber = int.Parse(Console.ReadLine());
+                Console.WriteLine("Please enter the highest number in a range of positive numbers");
+                int userHigherNumber = int.Parse(Console.ReadLine());
+                while (userHigherNumber < userLowNumber)
+                {
+
+                    Console.WriteLine("Please enter a number a higher number");
+                    userHigherNumber = int.Parse(Console.ReadLine());
+                    break;
+                }
+                //Ask user to guess 6 numbers
+                int numberofGuessess = 6;
+                int[] userNumbers = new int[numberofGuessess];
+
+
+
+                for (int i = 0; i < userNumbers.Length; i++)
+                {
+                    Console.WriteLine("Enter your  number");
+                    int numberEntered = int.Parse(Console.ReadLine());
+
+                    while (numberEntered < userLowNumber || numberEntered > userHigherNumber)
+                    {
+                        Console.WriteLine("Please enter a number with in range");
                         break;
                     }
-                    //Ask user to guess 6 numbers
-                    int numberofGuessess = 6;
-                    int[] userNumbers = new int[numberofGuessess];
-
-
-
-                    for (int i = 0; i < userNumbers.Length; i++)
-                    {
-                        Console.WriteLine("Enter your  number");
-                        int numberEntered = int.Parse(Console.ReadLine());
-
-                        while (numberEntered < userLowNumber || numberEntered > userHigherNumber)
-                        {
-                            Console.WriteLine("Please enter a number with in range");
-                            break;
-                        }
-                        userNumbers[i] = numberEntered;
-                    }
-                    
+                    userNumbers[i] = numberEntered;
                 }
-            }
-            //computer generates random numbers
-            {//declare variables should ave done it in the beginning
-                int lowernumber = 12;
-                int uppernumber = 52;
+
+
+
+                //computer generates random numbers
+                //declare variables should ave done it in the beginning
+
                 int[] lottoNumbers = new int[6];
                 Random rand = new Random();
                 int temp = 0;
@@ -68,12 +65,12 @@ namespace Lotteryproject
                 //fill array with lottery numbers
                 for (int i = 0; i < lottoNumbers.Length; i++)
                 {
-                    temp = rand.Next(lowernumber, uppernumber);//generate random number
+                    temp = rand.Next(userLowNumber, userHigherNumber);//generate random number
 
 
                     // check to for duplicate
                     while (lottoNumbers.Contains(temp) == true)
-                        temp = rand.Next(lowernumber, uppernumber); // duplicate, try again
+                        temp = rand.Next(userLowNumber, userHigherNumber); // duplicate, try again
 
                     //add new number
                     lottoNumbers[i] = temp;
@@ -85,8 +82,7 @@ namespace Lotteryproject
                     Console.WriteLine("Lucky Number: " + (i));
                 }
                 // Compare user and computer for matches, for example loop
-                int numberofGuessess = 6;
-                int[] userNumbers = new int[numberofGuessess];
+
                 int numbersCorrect = 0;
 
                 for (int i = 0; i < userNumbers.Length; i++)
@@ -99,7 +95,7 @@ namespace Lotteryproject
                         }
                 }
                 //informs user of numbers matched
-                Console.WriteLine("You have guessed {0}, numbers correctly, numbersCorrect");
+                Console.WriteLine("You have guessed {0}, numbers correctly", numbersCorrect);
 
 
                 if (numbersCorrect == 6)
@@ -117,26 +113,67 @@ namespace Lotteryproject
                 }
                 else
                 {
-                    Console.WriteLine("Thanks for playing");
+                    Console.WriteLine("Thank you");
                 }
 
+                //Ask user to play again
+                //    string playAgain;
+                //    Console.WriteLine("Would you like to play again? YES or No");
+                //    playAgain = Console.ReadLine();
+                //    while (playAgain.ToLower() == "No")
+                //    {
+                //        Console.WriteLine(" Thanks for playing");
+                //        Console.WriteLine("last chance, YES/NO");
+                //        playAgain = Console.ReadLine();
+                //        if (playAgain.ToLower() == "NO")
+                //        {
+                //            break;
 
+                //        }
 
+                //    }
+                //}
+                //while (playAgain.ToLower() == "yes");
 
-                        
             }
-
-             
-
-           
-
-
-
 
 
         }
+
     }
 }
+    
+
+        
+    
+
+
+
+
+
+
+
+
+
+
+
+
+                    
+
+
+                
+
+
+
+
+
+
+
+           
+            
+
+
+    
 
 
 
